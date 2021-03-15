@@ -15,8 +15,16 @@
           <b> Endereço: </b> {{ transformAddress }}
         </p>
         <p>
-          <b> Empresa: </b> {{}}
+          <b> Empresa: </b> {{lead.company.name}}
         </p>
+        <div class="company_sub_itens">
+          <p>
+            <b> Categorias: </b> {{lead.company.bs}}
+          </p>
+          <p>
+            <b> Palavra Chave: </b> {{lead.company.catchPhrase}}
+          </p>
+        </div>
     </div>
   </div>
 </template>
@@ -90,5 +98,8 @@ hr {
 }
 .details p {
   padding-top: 10px
+}
+.company_sub_itens {
+  padding-left: 10px;
 }
 </style>
