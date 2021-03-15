@@ -6,7 +6,7 @@
         <p class="card_title">{{ lead.phone }} ‧ {{ lead.email }} ‧ {{ lead.website }}</p>
       </div>
       <div class="card_information" >
-        <div class="arrow" @click="showDetails = !showDetails"></div>
+        <div class="arrow" :style="arrowStyle" @click="showDetails = !showDetails"></div>
       </div>
     </div>
     <div v-if="showDetails" class="details">
@@ -22,6 +22,14 @@
 export default {
   props: {
     lead: Object,
+  },
+  computed: {
+    arrowStyle () {
+      return { 
+        transform: !this.showDetails ? 'rotate(225deg)' : 'rotate(45deg)',
+        'transition-duration': '0.5s'
+      }
+    }
   },
   data() {
     return {
@@ -58,7 +66,6 @@ export default {
   height: 12px;
   border-top: 2px solid $dark-blue;
   border-left: 2px solid $dark-blue;
-  transform: rotate(225deg);
 }
 .card_information {
   flex-direction: row;
