@@ -1,13 +1,16 @@
 <template>
   <div>
     <label>Nome:</label>
-    <input v-model="name"/>
-    <label >Categorias</label>
-    <select v-model="category">
-      <option 
+    <input v-model="filter.name" />
+    <label>Categorias</label>
+    <select v-model="filter.category">
+      <option
         v-for="(option, index) in categoryOptions"
         :key="index"
-        :value="option">{{option}}</option>
+        :value="option"
+      >
+        {{ option }}
+      </option>
     </select>
   </div>
 </template>
@@ -15,19 +18,25 @@
 <script>
 export default {
   props: {
-    categoryOptions: Array
+    categoryOptions: Array,
   },
   watch: {
-    name: function (value) {
-      this.$emit('changeName', value)
-    }
+    filter: {
+      handler(value) {
+        this.$emit("changeFilter", value);
+      },
+      deep: true,
+    },
   },
-  data () {
+  data() {
     return {
-      name: '',
-      category: null
-    }
-  }
+      filter: {
+        name: "",
+        category: null,
+      },
+    };
+  },
+  methods: {},
 };
 </script>
 
