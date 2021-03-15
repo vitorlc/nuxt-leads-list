@@ -2,12 +2,23 @@
   <div class="leads">
     <Logo />
     <!-- <Logo dark-background /> -->
-    <h1 class="leads__title">Leads</h1>
+    <main>
+      <Lead v-for="lead in leads" :key="lead.id" :lead="lead"/>
+    </main>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      leads: []
+    }
+  },
+  async fetch () {
+    this.leads = await fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json())
+  }
+}
 </script>
 
 <style lang="scss" scoped="true">
