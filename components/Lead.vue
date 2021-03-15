@@ -11,9 +11,12 @@
     </div>
     <div v-if="showDetails" class="details">
       <hr>
-      <p>
-        Teste
-      </p>
+        <p>
+          <b> Endereço: </b> {{ transformAddress }}
+        </p>
+        <p>
+          <b> Empresa: </b> {{}}
+        </p>
     </div>
   </div>
 </template>
@@ -29,6 +32,15 @@ export default {
         transform: !this.showDetails ? 'rotate(225deg)' : 'rotate(45deg)',
         'transition-duration': '0.5s'
       }
+    },
+    transformAddress() {
+      let address = Object.entries(this.lead.address)
+      let text = ''
+      for(let e of address) {
+        if(typeof e[1] == 'object') continue
+        text = text +` ${e[0].charAt(0).toUpperCase() + e[0].slice(1)}: ${e[1]};`
+      }
+      return text
     }
   },
   data() {
@@ -75,5 +87,8 @@ export default {
 }
 hr { 
   border-color: $dark-blue 
+}
+.details p {
+  padding-top: 10px
 }
 </style>
