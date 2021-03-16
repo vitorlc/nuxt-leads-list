@@ -43,6 +43,11 @@ export default {
     ).then((res) => res.json());
     this.leads.forEach((e) => this.categoryOptions.push(e.company.bs));
   },
+  methods: {
+    changeFilter(value) {
+      this.filter = value
+    }
+  }
 };
 </script>
 
