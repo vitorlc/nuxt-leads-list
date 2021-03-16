@@ -12,13 +12,21 @@
 export default {
   data() {
     return {
-      leads: []
-    }
+      leads: [],
+      categoryOptions: [],
+      filter: {
+        name: "",
+        category: null,
+      },
+    };
   },
-  async fetch () {
-    this.leads = await fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json())
-  }
-}
+  async fetch() {
+    this.leads = await fetch(
+      "https://jsonplaceholder.typicode.com/users"
+    ).then((res) => res.json());
+    this.leads.forEach((e) => this.categoryOptions.push(e.company.bs));
+  },
+};
 </script>
 
 <style lang="scss" scoped="true">
